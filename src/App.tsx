@@ -10,6 +10,7 @@ import  Damaged from './pages/Damaged';
 import Locations from './pages/Locations';
 import AddEquipment from './pages/AddEquipment'; // Importar la nueva página
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import './styles/global.css';
 const App: React.FC = () => {
   return (
     <Router>

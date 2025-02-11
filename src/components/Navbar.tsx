@@ -12,16 +12,19 @@ setIsCollapsed(!isCollapsed);
 
 return (
 <nav className="bg-dark text-white vh-100 p-3" style={{ width: isCollapsed ? '80px' : '250px', transition: 'width 0.3s' }}>
-    {/* Botón de Hamburguesa */}
+    {/* Botón de Hamburguesa y Título */}
     <div className="d-flex justify-content-between align-items-center mb-4">
+    {/* Botón de Hamburguesa (Visible en Pantallas Pequeñas) */}
     <button
-        className="btn btn-light d-block d-md-none toggle-button"
+        className="btn btn-light d-flex align-items-center justify-content-center toggle-button"
         onClick={toggleCollapse}
         title="Toggle Menu"
     >
-        <i className={`bi ${isCollapsed ? 'bi-arrow-right-square' : 'bi-list'}`}></i>
+        <i className={`bi ${isCollapsed ? 'bi-arrow-right-square-fill' : 'bi-list'}`}></i>
     </button>
-    {!isCollapsed && <h4>Inventario</h4>}
+
+    {/* Título "Inventario" (Oculto en Pantallas Pequeñas) */}
+    {!isCollapsed && <h4 className="mb-0 d-none d-md-block">Inventario</h4>}
     </div>
 
     {/* Lista de Enlaces */}
@@ -33,7 +36,7 @@ return (
         title="Inicio"
         >
         <i className="bi bi-house me-2"></i>
-        {!isCollapsed && 'Inicio'}
+        {!isCollapsed && <span className="d-none d-md-inline">Inicio</span>}
         </Link>
     </li>
     <li className="mb-2">
@@ -43,7 +46,7 @@ return (
         title="Categorías"
         >
         <i className="bi bi-tags me-2"></i>
-        {!isCollapsed && 'Categorías'}
+        {!isCollapsed && <span className="d-none d-md-inline">Categorías</span>}
         </Link>
     </li>
     <li className="mb-2">
@@ -53,7 +56,7 @@ return (
         title="Equipos Activos"
         >
         <i className="bi bi-check-circle me-2"></i>
-        {!isCollapsed && 'Equipos Activos'}
+        {!isCollapsed && <span className="d-none d-md-inline">Equipos Activos</span>}
         </Link>
     </li>
     <li className="mb-2">
@@ -63,7 +66,7 @@ return (
         title="Descontinuados"
         >
         <i className="bi bi-x-circle me-2"></i>
-        {!isCollapsed && 'Descontinuados'}
+        {!isCollapsed && <span className="d-none d-md-inline">Descontinuados</span>}
         </Link>
     </li>
     <li className="mb-2">
@@ -73,7 +76,7 @@ return (
         title="Dañados"
         >
         <i className="bi bi-exclamation-triangle me-2"></i>
-        {!isCollapsed && 'Dañados'}
+        {!isCollapsed && <span className="d-none d-md-inline">Dañados</span>}
         </Link>
     </li>
     <li className="mb-2">
@@ -83,7 +86,7 @@ return (
         title="Ubicaciones"
         >
         <i className="bi bi-geo-alt me-2"></i>
-        {!isCollapsed && 'Ubicaciones'}
+        {!isCollapsed && <span className="d-none d-md-inline">Ubicaciones</span>}
         </Link>
     </li>
     <li className="mb-2">
@@ -93,7 +96,7 @@ return (
         title="Agregar Equipo"
         >
         <i className="bi bi-plus-circle me-2"></i>
-        {!isCollapsed && 'Agregar Equipo'}
+        {!isCollapsed && <span className="d-none d-md-inline">Agregar Equipo</span>}
         </Link>
     </li>
     </ul>

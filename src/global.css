@@ -1,0 +1,147 @@
+/* src/styles/global.css */
+
+/* Reset básico */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: Arial, sans-serif;
+line-height: 1.6;
+font-size: 1rem; /* Tamaño base ajustable */
+color: #333;
+background-color: #f8f9fa;
+}
+
+/* Contenedores responsivos */
+.container {
+max-width: 100%;
+padding: 0 15px;
+margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+.container {
+    max-width: 720px;
+}
+}
+
+@media (min-width: 992px) {
+.container {
+    max-width: 960px;
+}
+}
+
+@media (min-width: 1200px) {
+.container {
+    max-width: 1140px;
+}
+}
+
+/* Navbar responsivo */
+nav {
+position: fixed;
+top: 0;
+left: 0;
+width: 80px; /* Ancho colapsado */
+height: 100vh;
+background-color: #343a40;
+transition: width 0.3s ease;
+z-index: 1000;
+}
+
+nav.expanded {
+width: 250px; /* Ancho expandido */
+}
+
+nav .btn-light {
+background-color: #f8f9fa;
+border: none;
+width: 40px;
+height: 40px;
+font-size: 1.5rem;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+nav h4 {
+display: none;
+}
+
+nav.expanded h4 {
+display: block;
+}
+
+nav ul li a span {
+display: none;
+}
+
+nav.expanded ul li a span {
+display: inline;
+}
+
+/* Tablas responsivas */
+.table-responsive {
+overflow-x: auto;
+/* Mejora el desplazamiento en iOS */
+}
+
+.table-responsive table {
+min-width: 100%;
+border-collapse: collapse;
+}
+
+.table-responsive th,
+.table-responsive td {
+white-space: nowrap; /* Evita que el texto se rompa */
+}
+
+/* Botones responsivos */
+.btn {
+font-size: 1rem;
+padding: 0.5rem 1rem;
+}
+
+.btn-block {
+display: block;
+width: 100%;
+}
+
+/* Formularios responsivos */
+.form-control {
+font-size: 1rem;
+padding: 0.5rem;
+width: 100%;
+}
+
+@media (max-width: 768px) {
+.form-control {
+    font-size: 1.2rem; /* Aumentar el tamaño del texto en móviles */
+}
+}
+
+/* Gráficas responsivas */
+.chart-container {
+position: relative;
+width: 100%;
+height: auto;
+}
+
+.chart-container canvas {
+max-width: 100%;
+height: auto;
+}
+
+/* Espaciado en móviles */
+@media (max-width: 768px) {
+.mt-mobile {
+    margin-top: 1rem !important;
+}
+
+.mb-mobile {
+    margin-bottom: 1rem !important;
+}
+}

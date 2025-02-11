@@ -40,7 +40,9 @@ return (
     <div className="d-flex justify-content-between mb-3">
     <ExportToExcel data={inventory} fileName="ActiveInventory" />
     </div>
+    <div className="table-responsive">
     <InventoryTable data={inventory} columns={columns} />
+    </div>
 </div>
 );
 };
