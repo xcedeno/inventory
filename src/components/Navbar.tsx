@@ -1,17 +1,36 @@
-// src/components/Navbar.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar: React.FC = () => {
-const [isCollapsed, setIsCollapsed] = useState(false); // Estado para controlar el colapso
+interface NavbarProps {
+onToggleCollapse: (isCollapsed: boolean) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onToggleCollapse }) => {
+const [isCollapsed, setIsCollapsed] = useState(window.innerWidth < 768); // Estado inicial basado en el tamaño de la pantalla
 
 // Función para alternar el estado del menú
 const toggleCollapse = () => {
-setIsCollapsed(!isCollapsed);
+const newCollapsedState = !isCollapsed;
+setIsCollapsed(newCollapsedState);
+onToggleCollapse(newCollapsedState);
 };
 
+// Efecto para manejar cambios de tamaño de la ventana
+useEffect(() => {
+const handleResize = () => {
+    const newCollapsedState = window.innerWidth < 768;
+    setIsCollapsed(newCollapsedState);
+    onToggleCollapse(newCollapsedState);
+};
+
+window.addEventListener('resize', handleResize);
+return () => {
+    window.removeEventListener('resize', handleResize);
+};
+}, [onToggleCollapse]);
+
 return (
-<nav className="bg-dark text-white vh-100 p-3" style={{ width: isCollapsed ? '80px' : '250px', transition: 'width 0.3s' }}>
+<nav className={`bg-dark text-white vh-100 p-3 ${isCollapsed ? '' : 'expanded'}`} style={{ transition: 'width 0.3s' }}>
     {/* Botón de Hamburguesa y Título */}
     <div className="d-flex justify-content-between align-items-center mb-4">
     {/* Botón de Hamburguesa (Visible en Pantallas Pequeñas) */}
