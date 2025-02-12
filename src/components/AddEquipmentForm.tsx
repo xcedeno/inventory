@@ -1,4 +1,3 @@
-// src/components/AddEquipmentForm.tsx
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 
@@ -16,6 +15,13 @@ const [categoryId, setCategoryId] = useState<number | null>(null);
 const [locationId, setLocationId] = useState<number | null>(null);
 const [issue, setIssue] = useState(''); // Observación o descripción del problema
 const [discontinuedDate, setDiscontinuedDate] = useState('');
+
+// Nuevos campos
+const [room, setRoom] = useState('');
+const [decoSerial, setDecoSerial] = useState('');
+const [decoId, setDecoId] = useState('');
+const [accessCard, setAccessCard] = useState('');
+const [numeroActivo, setNumeroActivo] = useState('');
 
 const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
 const [locations, setLocations] = useState<{ id: number; name: string }[]>([]);
@@ -59,6 +65,11 @@ const newEquipment = {
     location_id: locationId,
     issue: status === 'damaged' ? issue : null, // Solo para equipos dañados
     discontinued_date: status === 'discontinued' ? discontinuedDate : null, // Solo para equipos descontinuados
+    room: categoryId === categories.find(c => c.name === 'Decodificadores')?.id ? room : null,
+    deco_serial: categoryId === categories.find(c => c.name === 'Decodificadores')?.id ? decoSerial : null,
+    deco_id: categoryId === categories.find(c => c.name === 'Decodificadores')?.id ? decoId : null,
+    access_card: categoryId === categories.find(c => c.name === 'Decodificadores')?.id ? accessCard : null,
+    numero_activo: categoryId === categories.find(c => c.name === 'Decodificadores')?.id ? numeroActivo : null,
 };
 
 const { error } = await supabase.from('equipment').insert(newEquipment);
@@ -77,8 +88,15 @@ if (error) {
     setLocationId(null);
     setIssue('');
     setDiscontinuedDate('');
+    setRoom('');
+    setDecoSerial('');
+    setDecoId('');
+    setAccessCard('');
+    setNumeroActivo('');
 }
 };
+
+const isDecodificadores = categoryId === categories.find(c => c.name === 'Decodificadores')?.id;
 
 return (
 <form onSubmit={handleSubmit} className="container mt-4">
@@ -188,6 +206,66 @@ return (
         ))}
     </select>
     </div>
+
+    {/* Nuevos campos (solo para Decodificadores) */}
+    {isDecodificadores && (
+    <>
+        <div className="mb-3">
+        <label htmlFor="room" className="form-label">Room</label>
+        <input
+            type="text"
+            className="form-control"
+            id="room"
+            value={room}
+            onChange={(e) => setRoom(e.target.value)}
+        />
+        </div>
+
+        <div className="mb-3">
+        <label htmlFor="decoSerial" className="form-label">Deco Serial</label>
+        <input
+            type="text"
+            className="form-control"
+            id="decoSerial"
+            value={decoSerial}
+            onChange={(e) => setDecoSerial(e.target.value)}
+        />
+        </div>
+
+        <div className="mb-3">
+        <label htmlFor="decoId" className="form-label">Deco ID</label>
+        <input
+            type="text"
+            className="form-control"
+            id="decoId"
+            value={decoId}
+            onChange={(e) => setDecoId(e.target.value)}
+        />
+        </div>
+
+        <div className="mb-3">
+        <label htmlFor="accessCard" className="form-label">Access Card</label>
+        <input
+            type="text"
+            className="form-control"
+            id="accessCard"
+            value={accessCard}
+            onChange={(e) => setAccessCard(e.target.value)}
+        />
+        </div>
+
+        <div className="mb-3">
+        <label htmlFor="numeroActivo" className="form-label">Número Activo</label>
+        <input
+            type="text"
+            className="form-control"
+            id="numeroActivo"
+            value={numeroActivo}
+            onChange={(e) => setNumeroActivo(e.target.value)}
+        />
+        </div>
+    </>
+    )}
 
     {/* Observación (solo para equipos dañados) */}
     {status === 'damaged' && (

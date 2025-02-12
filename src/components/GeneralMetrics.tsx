@@ -43,7 +43,7 @@ return (
     </div>
     <div className="col-md-3">
     <div className="card text-center p-3 bg-danger text-white">
-        <h5>Equipos Descontinuados</h5>
+        <h5>Descontinuados</h5>
         <p>{metrics.discontinued}</p>
     </div>
     </div>
