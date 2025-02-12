@@ -11,7 +11,6 @@ import Locations from './pages/Locations';
 import AddEquipment from './pages/AddEquipment'; // Importar la nueva página
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import CategoryDetail from './pages/CategoryDetail';
-
 import './global.css';
 
 const App: React.FC = () => {
